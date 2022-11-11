@@ -18,6 +18,7 @@ function sendEmail() {
                Chúng tôi xin chân thành cảm ơn!`, //Nội dung
         })
         .then(function (message) {
+            console.log(email, nameUser, phoneUser);
         alert("Chúc mừng bạn đã đăng ký thành công, xin vui lòng kiểm tra email để nhận được thông báo mới nhất!")  // Dòng thông báo sau khi gửi thành công email
     });
   }
