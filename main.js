@@ -3,16 +3,16 @@
    Hiện tại API gửi mail em đang làm có API free để test. Web: https://elasticemail.com/email-api-pricing#comparisonSection
 */
 function sendEmail() {
-    const email   = document.getElementById("checkout_user_email");
+    const email = document.getElementById("checkout_user_email").value;
     const nameUser = document.getElementById("billing_address_full_name").value;
     const phoneUser = document.getElementById("billing_address_phone").value;
     Email.send({
         Host: "smtp.elasticemail.com",
-        Username: "tranhoangnhu98@gmail.com",  //tài khoản mail đăng ký trên trang get api
-        Password: "908AC2E105F16CFB8805FAD123B45C2A0E01",  //  key password được lấy về sau khi đăng ký thành công
+        Username: "tran.hoang.nhu.1997@gmail.com",  //tài khoản mail đăng ký trên trang get api
+        Password: "C8CD52DA26D1A8C6E92C13C5EE560200A168",  //  key password được lấy về sau khi đăng ký thành công
         Port: 2525, //  key port được lấy về sau khi đăng ký thành công
-        To: email.value,  //email người nhận ( có thể nhiều người )
-        From: "tranhoangnhu98@gmail.com", //email người gửi ( 1 người)
+        To: email,  //email người nhận ( có thể nhiều người )
+        From: "tran.hoang.nhu.1997@gmail.com", //email người gửi ( 1 người)
         Subject: "Chúc mừng bạn đã đăng ký ecard thành công", //Tiêu đề
         Body: `Sau khi công ty zintech gọi đến số điện thoại: ${phoneUser}. Xin mời quý khách ${nameUser} đến nhận thẻ ecard. 
                Chúng tôi xin chân thành cảm ơn!`, //Nội dung
