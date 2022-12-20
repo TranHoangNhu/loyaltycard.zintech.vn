@@ -759,9 +759,13 @@ body li {
 .contenedorCards .card .wrapper .infoProd .extraInfo {
   text-align: justify;
   position: relative;
-  overflow: hidden;
-  height: 55px;
+  display: none;
   transition: 0.5s ease-in-out;
+}
+
+.contenedorCards .card .wrapper .infoProd .active {
+  display: block;
+  height: 300px;
 }
 .contenedorCards .card .wrapper .infoProd .actions {
   display: flex;
@@ -862,4 +866,3 @@ body li {
   transform: scale(0);
 }
 /* button readmore */
-

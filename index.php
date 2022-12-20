@@ -1,9 +1,54 @@
+<?php
+require('lib/db.php');
+@session_start(); 
+
+$tenkh = ""; $mobile = "";
+$email = ""; $address = "";
+$loaithe = "";
+//
+//
+if (isset($_POST['tenkh'])) {
+    $tenkh = $_POST['tenkh'];
+}
+if (isset($_POST['email'])) {
+    $email = $_POST['email'];
+}
+if (isset($_POST['mobile'])) {
+    $mobile = $_POST['mobile'];
+}
+if (isset($_POST['address'])) {
+    $address = $_POST['address'];
+}
+if (isset($_POST['loaithe'])) {
+    $loaithe = $_POST['loaithe'];
+}
+//
+$insert = 0;
+//
+if ($tenkh != "") 
+{
+    $sql = "insert into tblWeb_KhachHangDangKyMemberCard(TenKH, DiDong, Email, DiaChi, TinhTrangID, MaLoaiThe, DaThanhToan, DaTraDu, TongTien, TienThucTra, TienKhuyenMai, TienDaTra, TienConPhaiThu, HTTT, GhiChuThanhToan, ThoiGianDangKy, ThoiGianCapNhat, MaNVXuLy) values(N'$tenkh', '$mobile', N'$email', N'$address', '0', '$loaithe', '0', '0', '0','0','0','0','0','','',getdate(),getdate(),'')";
+    $conn->query($sql);
+
+    $insert = 1;
+}
+
+if ($insert == 1) 
+{
+?>
+    <script type="text/javascript">
+        setTimeout('window.location="thankyou.php"', 0);
+    </script>
+<?php
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>ZinECard - Card visit 4.0</title>
+    <title>Caravelle - Membership System</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -48,7 +93,7 @@
         <div class="container-xxl position-relative p-0" id="home">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="m-0">ZinECard</h1>
+                    <h1 class="m-0">Caravelle</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -58,10 +103,10 @@
                     <div class="navbar-nav mx-auto py-0">
                         <a href="#home" class="nav-item nav-link active">Trang chủ</a>
                         <a href="#about" class="nav-item nav-link">VỀ SẢN PHẨM</a>
-                        <a href="#feature" class="nav-item nav-link">TÍNH NĂNG</a>
                         <a href="#pricing" class="nav-item nav-link">COMBO ƯU ĐÃI</a>
                         <a href="#review" class="nav-item nav-link">TRẢI NGHIỆM KHÁCH HÀNG</a>
                         <a href="#contact" class="nav-item nav-link">LIÊN HỆ</a>
+                        <a href="login.php" class="nav-item nav-link">ADMIN</a>
                     </div>
                     <!-- <a href="" class="btn btn-primary-gradient rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Start Free Trial</a> -->
                 </div>
@@ -71,12 +116,9 @@
                 <div class="container px-lg-5">
                     <div class="row g-5">
                         <div class="col-lg-8 text-center px-4 text-lg-start">
-                            <h1 class="text-gradient mb-4 animated slideInDown">ZinEcard - giải pháp công nghệ card
-                                visit
-                                4.0</h1>
+                            <h1 class="text-gradient mb-4 animated slideInDown">Caravelle - chương trình thẻ cho khách hàng thân thiết</h1>
                             <p class="text-white pb-5 fs-4 animated slideInDown">
-                                Tạo profile chuyên nghiệp cho riêng bạn - tăng khả năng kết nối với đối tác và khách
-                                hàng
+                                Trải nghiệm các dịch vụ của Mai House với các ưu đãi hấp dẫn thông qua việc đăng ký thẻ thành viên, với nhiều tiện ích và lợi ích bất ngờ
                             </p>
                             <a href="#registerEcard"
                                 class="btn btn-warning text-warning bg-transparent fs-5 py-sm-3 px-5 py-3 px-sm-5 me-3 rounded-pill animated fadeInUp">
@@ -229,7 +271,7 @@
                     <div class="imgProd" style="background-image: url(./img/copper-member.png);">
                     </div>
                     <div class="infoProd">
-                        <p class="nombreProd" style="color: rgb(172, 109, 0)">ECARD-COPPER-MEMBER</p>
+                        <p class="nombreProd" style="color: rgb(172, 109, 0)">COPPER-MEMBER</p>
                         <p class="extraInfo">-Được đồng bộ dữ liệu về sở thích và hành vi để được phục vụ tốt nhất ở mọi
                             chi nhánh.<br>
                             -Được xướng tên bằng giọng nói trợ lý ảo khi checkin bằng thẻ hội viên (tính năng này có thể
@@ -244,7 +286,7 @@
                     <div class="imgProd" style="background-image: url(./img/silver-member.png);">
                     </div>
                     <div class="infoProd">
-                        <p class="nombreProd" style="color: rgb(184, 184, 184)">ECARD-SILVER-MEMBER</p>
+                        <p class="nombreProd" style="color: rgb(184, 184, 184)">SILVER-MEMBER</p>
                         <p class="extraInfo">-Được đồng bộ dữ liệu về sở thích và hành vi để được phục vụ tốt nhất ở mọi
                             chi nhánh.<br>
                             -Được xướng tên bằng giọng nói trợ lý ảo khi checkin bằng thẻ hội viên (tính năng này có thể
@@ -260,7 +302,7 @@
                     <div class="imgProd" style="background-image: url(./img/gold-member.png);">
                     </div>
                     <div class="infoProd">
-                        <p class="nombreProd" style="color: rgb(245, 208, 3)">ECARD-GOLD-MEMBER</p>
+                        <p class="nombreProd" style="color: rgb(245, 208, 3)">GOLD-MEMBER</p>
                         <p class="extraInfo">-Được đồng bộ dữ liệu về sở thích và hành vi để được phục vụ tốt nhất ở mọi
                             chi nhánh.<br>
                             -Được xướng tên bằng giọng nói trợ lý ảo khi checkin bằng thẻ hội viên (tính năng này có thể
@@ -277,7 +319,7 @@
                     <div class="imgProd" style="background-image: url(./img/diamond-member.png);">
                     </div>
                     <div class="infoProd">
-                        <p class="nombreProd" style="color: rgb(163, 204, 200)">ECARD-DIAMOND-MEMBER</p>
+                        <p class="nombreProd" style="color: rgb(163, 204, 200)">DIAMON-MEMBER</p>
                         <p class="extraInfo">-Được đồng bộ dữ liệu về sở thích và hành vi để được phục vụ tốt nhất ở mọi
                             chi nhánh.<br>
                             -Được xướng tên bằng giọng nói trợ lý ảo khi checkin bằng thẻ hội viên (tính năng này có thể
@@ -295,7 +337,7 @@
         <!-- Item Card End -->
         <!-- fORM REGISTER -->
         <div id="registerEcard" class="text-center mt-5">
-            <h1 class="py-4 text-warning">GỬI FORM ĐĂNG KÝ NGAY TẠI ĐÂY</h1>
+            <h1 class="py-4 text-warning">VUI LÒNG ĐĂNG KÝ NGAY TẠI ĐÂY</h1>
             <form action="" method="post" enctype="multipart/form-data"
                 class="row mx-auto g-3 needs-validation justify-content-center">
                 <div class="col-12 col-md-6">
@@ -320,21 +362,21 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <!-- <label for="validationCustom01" class="form-label">First name</label> -->
-                    <input type="number" class="form-control py-3" name="phone" id="phone" placeholder="Điện thoại"
-                        required />
-                    <div class="pt-2 ps-2 valid-feedback text-start">Đã đúng định dạng!</div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <!-- <label for="validationCustom01" class="form-label">First name</label> -->
-
                     <input type="text" class="form-control py-3" name="address" id="address"
                         placeholder="Địa chỉ nhận thẻ" required />
                     <div class="pt-2 ps-2 valid-feedback text-start">Đã đúng định dạng!</div>
                 </div>
+                <div class="col-12 col-md-6">
+                    <!-- <label for="validationCustom01" class="form-label">First name</label> -->
+                    <select class="form-control py-3" name="loaithe" id="loaithe">
+                        <option value="V" selected>COPPER-MEMBER</option>
+                        <option value="S">SILVER-MEMBER</option>
+                        <option value="G">GOLD-MEMBER</option>
+                        <option value="D">DIAMOND-MEMBER</option>
+                    </select>
+                </div>
                 <div class="mb-3">
-                    <label for="formFileMultiple" class="form-label text-white">Đính kèm file thiết kế hoặc mô tả (nếu
-                        có)</label>
-                    <input class="form-control" type="file" id="formFileMultiple" multiple>
+                    Vui lòng nhập chính xác số nhà, phường, thị xã, thành phố để chung tôi dễ dàng gửi thẻ đến cho bạn một cách nhanh nhất.
                 </div>
                 <button type="submit" name="sendmail" id="btnRegister"
                     class="col-md-6 col-6 border-0 rounded-2 fw-bold py-3 my-4"
